@@ -1,0 +1,11 @@
+{
+  "name": "job-hunter",
+  "version": "1.0.0",
+  "description": "Job search board to keep track of all your applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carson Chen",
+  "license": "MIT"
+}
