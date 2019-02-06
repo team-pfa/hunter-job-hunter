@@ -1,0 +1,17 @@
+:root {
+  --blue: #2D3E6E;
+  --lightblue: #5F6C88;
+  --gray: #4A4A4A;
+  --lightgray: #909997;
+  --offwhite: #ECECEC;
+}
+
+.v-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.h-flex {
+  display: flex;
+  flex-direction: row;
+}
