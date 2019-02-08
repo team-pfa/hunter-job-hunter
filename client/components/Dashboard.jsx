@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SignUpForm from './SignUpForm';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -7,7 +8,9 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <p>Component works!</p>
+      <div>
+        <SignUpForm />
+      </div>
     )
   }
 }
