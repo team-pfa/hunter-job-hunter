@@ -39,12 +39,6 @@ class App extends Component {
                 avatar={this.state.avatar} />
 
         <Dashboard />
-
-        <div>
-          <Form myDataProp ={this.state.data}/>
-        </div>
-
-
       </div>
     )
   }
