@@ -1,0 +1,28 @@
+.flex-container {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    width: 100%;
+}
+
+.flex-container > * {
+    flex: 1;
+}
+
+#about, #activity, #username {
+    text-align: center;
+    border-style: double ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#avatar {
+    height: 70px;
+    width: 70px;
+}
+
+.header-container:hover {
+    background-color: powderblue;
+    transition: background-color .2s;
+}
+
