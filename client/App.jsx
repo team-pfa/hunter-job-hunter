@@ -37,6 +37,14 @@ class App extends Component {
                 showActivity={this.showActivity} 
                 username={this.state.user} 
                 avatar={this.state.avatar} />
+
+        <Dashboard />
+
+        <div>
+          <Form myDataProp ={this.state.data}/>
+        </div>
+
+
       </div>
     )
   }
