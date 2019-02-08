@@ -4,9 +4,9 @@
 	"description": "Job search board to keep track of all your applications.",
 	"main": "/client/index.js",
 	"scripts": {
-		"start": "webpack && nodemon ./server/server.js",
+		"start": "nodemon ./server/server.js",
 		"server": "webpack-dev-server --hot",
-		"build": "webpack",
+		"build": "webpack --watch",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Carson Chen",
