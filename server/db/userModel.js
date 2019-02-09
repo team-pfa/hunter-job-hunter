@@ -11,8 +11,6 @@ client.connect((err) => {
     throw err;
   }
   console.log('connected to the psql db!');
-
-
 });
 
 const userModel = {};
@@ -32,7 +30,6 @@ client.query(
   .then(res => console.log(res.rows[0]))
   .catch(e => console.error(e.stack))
                                             
-
 userModel.verify = async (req) => {
   const { username, password, email } = req.body;
   return client.query(`SELECT * FROM users WHERE username = '${username}' OR email = '${email}'`)
@@ -55,7 +52,7 @@ userModel.createUser = async (req, res) => {
   const hash = bcrypt.hashSync(password, salt);
   // CREATE TABLE users if it doesn't exist
   // a unique psql id and date_created value should be returned
-  let created = Date.now();
+  let created = '2016-06-22 19:10:25-07';
   return client.query
     (`INSERT INTO users (
         f_name, l_name, username, email, password, created) 
@@ -63,10 +60,10 @@ userModel.createUser = async (req, res) => {
         '${f_name}', '${l_name}', '${username}', '${email}', '${hash}', '${created}') 
       RETURNING id, created`)
     .then((result) => {
-      console.log(result);
       //req object is read-only
       //create property on res object to store psql-generated uuid
-      res.locals.uuid = result;
+      return result;
+      // res.locals.uuid = result;
 
 //   return client.query(`INSERT INTO users (f_name, l_name, username, email, password) VALUES ('${f_name}', '${l_name}', '${username}', '${email}', '${hash}')`)
 //     .then((res) => {
@@ -75,6 +72,10 @@ userModel.createUser = async (req, res) => {
 //     .catch((err) => {
 //       console.log('ERROR with creating user in database', err);
 //       return false;
+    })
+    .catch((err) => {
+      console.log('ERROR with creating user in database', err);
+      return false;
     });
 };
 

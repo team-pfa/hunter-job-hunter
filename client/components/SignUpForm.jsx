@@ -38,7 +38,7 @@ class SignUpForm extends Component {
         },
         body: JSON.stringify(data)
       })
-        .then(res => console.log(res.json())
+        .then(res => console.log('inside signup form jsx', res)
       )
 
       this.setState({

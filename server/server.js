@@ -35,7 +35,7 @@ app.get('/secret', sessionController.isLoggedIn, (req, res, next) => {
 })
 
 app.post('/signup', userController.signup, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
+  if (res.locals.result) res.status(200).redirect(req.baseUrl + '/secret');
   else res.status(404).send('SHENANIGANS :(');
 });
 
