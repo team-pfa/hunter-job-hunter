@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import AddCard from './AddCard';
+import JobCards from './JobCards';
 import '../css/JobPostings.css';
 
 class JobApplied extends Component {
@@ -9,16 +11,8 @@ class JobApplied extends Component {
   render() {
     return (
       <div className="job-posting-container v-flex">
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-        <div>Job Applied</div>
-
+        <AddCard />
+        <JobCards />
       </div>
     )
   }

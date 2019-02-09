@@ -5,7 +5,6 @@ import JobPostings from './components/JobPostings';
 import Header from './components/Header';
 import Resources from './components/Resources';
 import Landing from './components/Landing';
-import AddCard from './components/AddCard';
 import './App.css';
 import createBrowserHistory from 'history/createBrowserHistory'
 
@@ -28,7 +27,7 @@ class App extends Component {
             username={this.state.user}
             avatar={this.state.avatar}
           />
-          <AddCard />
+
           <Route exact path="/" component={Landing} />
           <Route path="/jobs" component={JobPostings} />
           <Route path="/dashboard" component={Dashboard} />

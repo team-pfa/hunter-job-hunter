@@ -25,10 +25,10 @@ app.get('/', (req, res, next) => {
 // });
 
 //user should be presented with a new card page after successful signup
-app.post('/signin', userController.verify, sessionController.startSession, cardController.getCards, (req, res, next) => {
-  if (res.locals.result) res.status(200).send();
-// app.post('/signin', userController.verify, sessionController.startSession, (req, res, next) => {
-//   if (res.locals.result) res.status(200).redirect(req.baseUrl + '/secret');
+// app.post('/signin', userController.verify, sessionController.startSession, cardController.getCards, (req, res, next) => {
+//   if (res.locals.result) res.status(200).send();
+app.post('/signin', userController.verify, sessionController.startSession, (req, res, next) => {
+  if (res.locals.result) res.status(200).redirect(req.baseUrl + '/secret');
 
   else res.status(404).send('could not find username and/or password');
 });
@@ -62,10 +62,10 @@ app.post('/deleteCards', cardController.deleteCard, (req, res, next) => {
   else res.status(404).send('SHENANIGANS :(');
 });
 
-app.post('/addCards', cardController.createCard, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('CARD SUCCESSFULLY CREATED!');
-  else res.status(404).send('SHENANIGANS :(');
-});
+// app.post('/addCards', cardController.createCard, (req, res, next) => {
+//   if (res.locals.result) res.status(200).send('CARD SUCCESSFULLY CREATED!');
+//   else res.status(404).send('SHENANIGANS :(');
+// });
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
