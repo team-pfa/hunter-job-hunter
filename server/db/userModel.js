@@ -21,7 +21,9 @@ userModel.verify = async (req) => {
   const { username, password, email } = req.body;
   return client.query(`SELECT * FROM users WHERE username = '${username}' OR email = '${email}'`)
     .then((res) => {
-      if (bcrypt.compareSync(password, res.rows[0].password)) return true;
+      if (bcrypt.compareSync(password, res.rows[0].password)) {
+        return true;
+      }
       return false;
     })
     .catch((err) => {
@@ -34,7 +36,6 @@ userModel.createUser = async (req, res) => {
   const { f_name, l_name, username, email, password } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
-  console.log(hash.length);
   return client.query(`INSERT INTO users (f_name, l_name, username, email, password) VALUES ('${f_name}', '${l_name}', '${username}', '${email}', '${hash}')`)
     .then((res) => {
       return true;
