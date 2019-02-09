@@ -38,8 +38,13 @@ class SignUpForm extends Component {
         },
         body: JSON.stringify(data)
       })
-        .then(res => console.log('inside signup form jsx', res)
-      )
+        .then(res => {
+          console.log('inside signupform', res);
+          if (res.redirected === true) {
+            this.props.history.push('/secret')
+            window.location.reload(); //temporary fix
+          }
+        });
 
       this.setState({
         username: '',

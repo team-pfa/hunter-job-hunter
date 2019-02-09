@@ -32,7 +32,6 @@ class App extends Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/resources" component={Resources} />
         </div>
-
       </Router>
     )
   }

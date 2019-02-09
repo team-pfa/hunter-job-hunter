@@ -52,7 +52,7 @@ userModel.createUser = async (req, res) => {
   const hash = bcrypt.hashSync(password, salt);
   // CREATE TABLE users if it doesn't exist
   // a unique psql id and date_created value should be returned
-  let created = '2016-06-22 19:10:25-07';
+  let created = '014-03-11 19:39:40';
   return client.query
     (`INSERT INTO users (
         f_name, l_name, username, email, password, created) 
@@ -62,8 +62,7 @@ userModel.createUser = async (req, res) => {
     .then((result) => {
       //req object is read-only
       //create property on res object to store psql-generated uuid
-      return result;
-      // res.locals.uuid = result;
+      return true;
 
 //   return client.query(`INSERT INTO users (f_name, l_name, username, email, password) VALUES ('${f_name}', '${l_name}', '${username}', '${email}', '${hash}')`)
 //     .then((res) => {
