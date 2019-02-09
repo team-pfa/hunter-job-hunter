@@ -5,7 +5,7 @@ class LoginForm extends Component {
        super(props);
        
        this.state = {
-          name: '',
+          username: '',
           password: '',
        }
        this.updateState = this.updateState.bind(this);
@@ -21,6 +21,7 @@ class LoginForm extends Component {
 
     submitState() {
        let data = this.state
+       
        fetch('/signin', {
           method: "POST",
           headers: {
@@ -28,14 +29,18 @@ class LoginForm extends Component {
           },
           body: JSON.stringify(data)
        })
-       then(response => response.json());
+         .then(res => {
+            if (res.redirected === true) {
+               console.log('redirected!');
+            }
+         });
     }
    
     render() {
        return (
           <div>
               username :
-             <input type = "text" name = "name" value = {this.state.name} 
+             <input type = "text" name = "username" value = {this.state.username} 
                 onChange = {this.updateState} /> <br/>
               password :
              <input type = "text" name = "password" value = {this.state.password}

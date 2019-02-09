@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signin', userController.verify, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('Success');
+  if (res.locals.result) res.status(200).redirect('../userpage.html');
   else res.status(404).send('could not find username and/or password');
 });
 
