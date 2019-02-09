@@ -26,7 +26,7 @@ app.get('/', (req, res, next) => {
 
 //user should be presented with a new card page after successful signup
 app.post('/signin', userController.verify, sessionController.startSession, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('user is legit and session created!');
+  if (res.locals.result) res.status(200).redirect(req.baseUrl + '/secret');
 
   else res.status(404).send('could not find username and/or password');
 });
@@ -36,7 +36,7 @@ app.get('/secret', sessionController.isLoggedIn, (req, res, next) => {
 })
 
 app.post('/signup', userController.signup, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
+  if (res.locals.result) res.status(200).redirect(req.baseUrl + '/secret');
   else res.status(404).send('SHENANIGANS :(');
 });
 
