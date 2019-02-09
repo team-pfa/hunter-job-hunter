@@ -13,13 +13,16 @@ class LoginForm extends Component {
     };
     updateState(event) {
         const input = {
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value
         }
        this.setState(input);
        //console.log(this.state);
     }
 
     submitState() {
+      if ( this.state.username === '' || this.state.password === ''){
+         alert("Must fill username AND password")
+      } else {
        let data = this.state
        
        fetch('/signin', {
@@ -34,6 +37,7 @@ class LoginForm extends Component {
                console.log('redirected!');
             }
          });
+      }
     }
    
     render() {
