@@ -20,7 +20,7 @@ app.post('/signin', userController.verify, (req, res, next) => {
 });
 
 app.post('/signup', userController.signup, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
+  if (!res.locals.errors) res.status(200).send('USER SUCCESSFULLY CREATED!');
   else res.status(404).send('SHENANIGANS :(');
 });
 

@@ -38,10 +38,8 @@ class SignUpForm extends Component {
         },
         body: JSON.stringify(data)
       })
-        .then(res => res.json())
-        .then((res) => {
-          console.log(res);
-      })
+        .then(res => console.log(res.json())
+      )
 
       this.setState({
         userName: '',

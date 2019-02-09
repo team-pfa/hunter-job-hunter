@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '/Users/wdanni/Desktop/codesmith/hunter-job-hunter/client/css/Header.css';
+import '../css/Header.css';
 
 
 class Header extends Component {
