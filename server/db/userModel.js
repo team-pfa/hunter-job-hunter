@@ -16,23 +16,24 @@ client.connect((err) => {
 const userModel = {};
 
 client.query(
-  `CREATE TABLE IF NOT EXISTS users 
+  `CREATE TABLE IF NOT EXISTS users
     (
-      id serial PRIMARY KEY, 
-      f_name VARCHAR(100), 
-      l_name VARCHAR(100), 
-      username text UNIQUE NOT NULL, 
-      email text UNIQUE, 
+      id serial PRIMARY KEY,
+      f_name VARCHAR(100),
+      l_name VARCHAR(100),
+      username text UNIQUE NOT NULL,
+      email text UNIQUE,
       password text NOT NULL,
       created TIMESTAMP NOT NULL
   );`
 )
   .then(res => console.log(res.rows[0]))
   .catch(e => console.error(e.stack))
-                                            
+
 userModel.verify = async (req) => {
   const { username, password, email } = req.body;
-  return client.query(`SELECT * FROM users WHERE username = '${username}' OR email = '${email}'`)
+  console.log(req.body, 'in sign in')
+  return client.query(`SELECT * FROM users WHERE username = '${username}'`)
     .then((res) => {
       if (bcrypt.compareSync(password, res.rows[0].password)) {
         return true;
@@ -55,9 +56,9 @@ userModel.createUser = async (req, res) => {
   let created = '014-03-11 19:39:40';
   return client.query
     (`INSERT INTO users (
-        f_name, l_name, username, email, password, created) 
+        f_name, l_name, username, email, password, created)
       VALUES (
-        '${f_name}', '${l_name}', '${username}', '${email}', '${hash}', '${created}') 
+        '${f_name}', '${l_name}', '${username}', '${email}', '${hash}', '${created}')
       RETURNING id, created`)
     .then((result) => {
       //req object is read-only

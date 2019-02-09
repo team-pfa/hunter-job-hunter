@@ -36,8 +36,10 @@ class LoginForm extends Component {
        })
          .then(res => {
             if (res.redirected === true) {
-               this.props.history.push('/secret')
-               window.location.reload(); // temporary fix
+               // this.props.history.push('/secret')
+               // window.location.reload(); // temporary fix
+               window.sessionStorage.setItem('Authorized', 'true');
+               this.props.toggleModal();
             }
          });
       }

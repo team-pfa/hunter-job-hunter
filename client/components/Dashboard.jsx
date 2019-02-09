@@ -19,15 +19,13 @@ class Dashboard extends Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-
-//   render() {
-//     return (
-//       <div>
-//         <SignUpForm />
-//         <LoginForm/>
-//         <JobCards/>
-//         <AddCard/>
-//      </div>
+  componentDidMount() {
+    if (window.sessionStorage.getItem('Authorized') == 'true') {
+      this.setState({
+        showModal: !this.state.showModal
+      })
+    }
+  }
 
   toggleModal() {
     this.setState({
@@ -39,7 +37,7 @@ class Dashboard extends Component {
     if (this.state.showModal) {
       return (
         <div className="dashboard-container">
-          <FormModal />
+          <FormModal toggleModal={this.toggleModal} />
         </div>
       )
     } else {
