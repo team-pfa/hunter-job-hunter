@@ -9,15 +9,6 @@ class Resources extends Component {
     return (
       <div className="job-posting-container v-flex">
         <div>Resources</div>
-        <div>Resources</div>
-        <div>Resources</div>
-        <div>Resources</div>
-        <div>Resources</div>
-        <div>Resources</div>
-        <div>Resources</div>
-        <div>Resources</div>
-        <div>Resources</div>
-
       </div>
     )
   }

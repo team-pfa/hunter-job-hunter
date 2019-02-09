@@ -41,8 +41,8 @@ class SignUpForm extends Component {
         .then(res => {
           console.log('inside signupform', res);
           if (res.redirected === true) {
-            this.props.history.push('/secret')
-            window.location.reload(); //temporary fix
+            window.sessionStorage.setItem('Authorized', 'true');
+            this.props.toggleModal();
           }
         });
 

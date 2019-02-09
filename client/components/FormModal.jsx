@@ -21,11 +21,11 @@ class FormModal extends Component {
   render() {
     if (this.state.signup) {
       return (
-        <LoginForm toggleForms={this.toggleForms} toggleModal={this.props.toggleModal}/>
+        <LoginForm toggleForms={this.toggleForms} toggleModal={this.props.toggleModal} />
       )
     } else {
       return (
-        <SignUpForm toggleForms={this.toggleForms} />
+        <SignUpForm toggleForms={this.toggleForms} toggleModal={this.props.toggleModal} />
       )
     }
   }
