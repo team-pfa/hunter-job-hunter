@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+
+import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
+import JobCards from './JobCards';
+import AddCard from './AddCard';
 import '../css/Dashboard.css';
 import FormModal from './FormModal';
 import JobApplied from './JobApplied';
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -12,6 +18,16 @@ class Dashboard extends Component {
 
     this.toggleModal = this.toggleModal.bind(this);
   }
+
+
+//   render() {
+//     return (
+//       <div>
+//         <SignUpForm />
+//         <LoginForm/>
+//         <JobCards/>
+//         <AddCard/>
+//      </div>
 
   toggleModal() {
     this.setState({
