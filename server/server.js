@@ -17,6 +17,13 @@ app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
+//if user is authenticated, fetch his job cards from db
+// app.post('/signin', userController.verify, cardModel.getCards, (req, res, next) => {
+//   if (res.locals.result) res.status(200).redirect('../userpage.html');
+//   else res.status(404).send('could not find username and/or password');
+// });
+
+//user should be presented with a new card page after successful signup
 app.post('/signin', userController.verify, sessionController.startSession, (req, res, next) => {
   if (res.locals.result) res.status(200).send('user is legit and session created!');
 
@@ -31,6 +38,7 @@ app.post('/signup', userController.signup, (req, res, next) => {
   if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
   else res.status(404).send('SHENANIGANS :(');
 });
+app.post()
 
 app.get('*', (req, res) => {
   // console.log(req.body)

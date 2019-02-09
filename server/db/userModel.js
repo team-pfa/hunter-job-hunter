@@ -17,6 +17,22 @@ client.connect((err) => {
 
 const userModel = {};
 
+client.query(
+  `CREATE TABLE users IF NOT EXISTS 
+    (
+      id serial PRIMARY KEY, 
+      f_name VARCHAR(100), 
+      l_name VARCHAR(100), 
+      username text UNIQUE NOT NULL, 
+      email text UNIQUE, 
+      password text NOT NULL,
+      created TIMESTAMP NOT NULL
+  );`
+)
+  .then(res => console.log(res.rows[0]))
+  .catch(e => console.error(e.stack))
+                                            
+
 userModel.verify = async (req) => {
   const { username, password, email } = req.body;
   return client.query(`SELECT * FROM users WHERE username = '${username}' OR email = '${email}'`)
@@ -32,17 +48,34 @@ userModel.verify = async (req) => {
     });
 };
 
+//By default node-postgres reads rows and collects them into JavaScript objects with the keys matching the column names and the values matching the corresponding row value for each column
 userModel.createUser = async (req, res) => {
-  const { f_name, l_name, username, email, password } = req.body;
+  const { f_name, l_name, username, email, password, created } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
-  return client.query(`INSERT INTO users (f_name, l_name, username, email, password) VALUES ('${f_name}', '${l_name}', '${username}', '${email}', '${hash}')`)
-    .then((res) => {
-      return true;
-    })
-    .catch((err) => {
-      console.log('ERROR with creating user in database', err);
-      return false;
+  console.log(hash.length);
+  //CREATE TABLE users if it doesn't exist
+  //a unique psql id and date_created value should be returned
+  let created = Date.now();
+  return client.query
+    (`INSERT INTO users (
+        f_name, l_name, username, email, password, created) 
+      VALUES (
+        '${f_name}', '${l_name}', '${username}', '${email}', '${hash}', '${created}') 
+      RETURNING id, created`)
+    .then((result) => {
+      console.log(result);
+      //req object is read-only
+      //create property on res object to store psql-generated uuid
+      res.locals.uuid = result;
+
+//   return client.query(`INSERT INTO users (f_name, l_name, username, email, password) VALUES ('${f_name}', '${l_name}', '${username}', '${email}', '${hash}')`)
+//     .then((res) => {
+//       return true;
+//     })
+//     .catch((err) => {
+//       console.log('ERROR with creating user in database', err);
+//       return false;
     });
 };
 
