@@ -38,10 +38,8 @@ app.post('/signup', userController.signup, (req, res, next) => {
   if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
   else res.status(404).send('SHENANIGANS :(');
 });
-app.post()
 
 app.get('*', (req, res) => {
-  // console.log(req.body)
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 

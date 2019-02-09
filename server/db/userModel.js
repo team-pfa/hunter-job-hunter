@@ -18,7 +18,7 @@ client.connect((err) => {
 const userModel = {};
 
 client.query(
-  `CREATE TABLE users IF NOT EXISTS 
+  `CREATE TABLE IF NOT EXISTS users 
     (
       id serial PRIMARY KEY, 
       f_name VARCHAR(100), 
@@ -50,12 +50,11 @@ userModel.verify = async (req) => {
 
 //By default node-postgres reads rows and collects them into JavaScript objects with the keys matching the column names and the values matching the corresponding row value for each column
 userModel.createUser = async (req, res) => {
-  const { f_name, l_name, username, email, password, created } = req.body;
+  const { f_name, l_name, username, email, password } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
-  console.log(hash.length);
-  //CREATE TABLE users if it doesn't exist
-  //a unique psql id and date_created value should be returned
+  // CREATE TABLE users if it doesn't exist
+  // a unique psql id and date_created value should be returned
   let created = Date.now();
   return client.query
     (`INSERT INTO users (
