@@ -1,13 +1,17 @@
 .flex-container {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
     align-content: space-between;
-    width: 100%;
 }
 
 .flex-container > * {
     flex: 1;
+}
+
+.header-container {
+    margin: 20px 20px;
+}
+
+.activeNav {
+    background-color: pink;
 }
 
 #about, #activity, #username {
@@ -21,8 +25,4 @@
     width: 70px;
 }
 
-/* .header-container:hover {
-    background-color: powderblue;
-    transition: background-color .2s;
-} */
 

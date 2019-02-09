@@ -37,7 +37,9 @@ userModel.verify = async (req) => {
   const { username, password, email } = req.body;
   return client.query(`SELECT * FROM users WHERE username = '${username}' OR email = '${email}'`)
     .then((res) => {
-      if (bcrypt.compareSync(password, res.rows[0].password)) return true;
+      if (bcrypt.compareSync(password, res.rows[0].password)) {
+        return true;
+      }
       return false;
     })
     .catch((err) => {
@@ -66,11 +68,14 @@ userModel.createUser = async (req, res) => {
       //req object is read-only
       //create property on res object to store psql-generated uuid
       res.locals.uuid = result;
-      return true;
-    })
-    .catch((err) => {
-      console.log('ERROR with creating user in database', err);
-      return false;
+
+//   return client.query(`INSERT INTO users (f_name, l_name, username, email, password) VALUES ('${f_name}', '${l_name}', '${username}', '${email}', '${hash}')`)
+//     .then((res) => {
+//       return true;
+//     })
+//     .catch((err) => {
+//       console.log('ERROR with creating user in database', err);
+//       return false;
     });
 };
 
