@@ -15,12 +15,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signin', userController.verify, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('Success');
+  if (res.locals.result) res.status(200).redirect('../userpage.html');
   else res.status(404).send('could not find username and/or password');
 });
 
 app.post('/signup', userController.signup, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
+  if (!res.locals.errors) res.status(200).send('USER SUCCESSFULLY CREATED!');
   else res.status(404).send('SHENANIGANS :(');
 });
 

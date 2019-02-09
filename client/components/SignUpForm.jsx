@@ -5,10 +5,10 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userName: '',
+      username: '',
       password: '',
-      firstName: '',
-      lastName: '',
+      f_name: '',
+      l_name: '',
       email: ''
     }
 
@@ -24,8 +24,8 @@ class SignUpForm extends Component {
   }
 
   handleSubmit() {
-    const { userName, password, email } = this.state;
-    if (userName === '' || password === '' || email === '') {
+    const { username, password, email } = this.state;
+    if (username === '' || password === '' || email === '') {
       alert('User name, password, or email field cannot be empty')
     } else {
       const data = this.state;
@@ -38,16 +38,14 @@ class SignUpForm extends Component {
         },
         body: JSON.stringify(data)
       })
-        .then(res => res.json())
-        .then((res) => {
-          console.log(res);
-      })
+        .then(res => console.log(res.json())
+      )
 
       this.setState({
-        userName: '',
+        username: '',
         password: '',
-        firstName: '',
-        lastName: '',
+        f_name: '',
+        l_name: '',
         email: ''
       })
     }
@@ -58,15 +56,15 @@ class SignUpForm extends Component {
       <div>
         <div className="signup-form-container v-flex">
           <p>User Name:</p>
-          <input type="text" name="userName" placeholder="User Name (Required)" value={this.state.userName} onChange={this.handleChange} />
+          <input type="text" name="username" placeholder="User Name (Required)" value={this.state.username} onChange={this.handleChange} />
           <p>Password:</p>
           <input type="text" name="password" placeholder="Password (Required)" value={this.state.password} onChange={this.handleChange} />
           <p>Email:</p>
           <input type="text" name="email" placeholder="Email (Required)" value={this.state.email} onChange={this.handleChange} />
           <p>First Name:</p>
-          <input type="text" name="firstName" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange} />
+          <input type="text" name="f_name" placeholder="First Name" value={this.state.f_name} onChange={this.handleChange} />
           <p>Last Name:</p>
-          <input type="text" name="lastName" placeholder="Last Name" value={this.state.lastName} onChange={this.handleChange} />
+          <input type="text" name="l_name" placeholder="Last Name" value={this.state.l_name} onChange={this.handleChange} />
         </div>
         <button onClick={this.handleSubmit}>Submit</button>
       </div>
