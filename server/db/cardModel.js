@@ -15,55 +15,54 @@ client.connect((err) => {
 const cardModel = {};
 
 client.query(
-    `CREATE TABLE IF NOT EXISTS users
-        (   
+    `CREATE TABLE IF NOT EXISTS cards
+        (
             card_id SERIAL PRIMARY KEY,
-            uuid INTEGER NOT NULL,
-            title VARCHAR(100) NOT NULL, 
-            company VARCHAR(100) NOT NULL, 
-            description VARCHAR(500), 
-            location TEXT UNIQUE NOT NULL, 
-            link TEXT, 
-            salary TEXT NOT NULL,
+            title VARCHAR(100) NOT NULL,
+            company VARCHAR(100) NOT NULL,
+            description VARCHAR(500),
+            location TEXT,
+            link TEXT,
+            salary TEXT,
             notes VARCHAR(100),
-            created_date TIMESTAMP NOT NULL,
-            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL  
-        
+            created_date TIMESTAMP DEFAULT NOW(),
+            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
         );`
   )
     .then(res => {
-        // console.log(res.rows[0]);
-        console.log(res)
+        return res
     })
     .catch(e => console.error(e.stack))
 
-//create a new card that is tied to a unique user 
+//create a new card that is tied to a unique user
 cardModel.createCard = async (req, res) => {
-    // const { title, company, desc, location, link, salary, notes } = req.body;
-    // let created_date = Date();
-    // return client.query
-    // (
-    //     `INSERT INTO cards (
-    //         title, company, desc, location, link, salary, notes, created_date) 
-    //     VALUES (
-    //         '${title}', '${company}', '${desc}', '${location}', '${link}', '${salary}', '${notes}', '${created_date}', '${last_updated}')`
-    // )
-    //   .then((res) => {
-    //     return true;
-    //   })
-    //   .catch((err) => {
-    //     console.log('ERROR with creating card in database', err);
-    //     return false;
-    //   });
+    const { jobTitle, company, jobDescription, jobLocation, url, salaryRange, note } = req.body;
+    return client.query
+    (
+        `INSERT INTO cards (
+            title, company, description, location, link, salary, notes
+        )
+        VALUES (
+            '${jobTitle}', '${company}', '${jobDescription}', '${jobLocation}', '${url}', '${salaryRange}', '${note}'
+        )`
+    )
+      .then(() => {
+        return true;
+      })
+      .catch((err) => {
+        console.log('ERROR with creating card in database', err);
+        return false;
+      });
   };
 
 cardModel.updateCard = async (req, res) => {
     // const { title, company, desc, location, link, salary, notes } = req.body;
+
     // let updated = Date();
     // return client.query
     //     (
-    //         `UPDATE cards SET 
-    //             title = title, company = company, desc = desc, location = location, link = link, salary = salary, notes = notes) 
+    //         `UPDATE cards SET
+    //             title = title, company = company, desc = desc, location = location, link = link, salary = salary, notes = notes)
     //         VALUES (
     //             '${title}', '${company}', '${desc}', '${location}', '${link}', '${salary}', '${notes}', '${updated}')`
     //     )
@@ -99,7 +98,7 @@ cardModel.deleteAllCards = async (req, res) => {
     //     return false;
     //     });
     };
-    
+
 //retrieve all rows in cards that match given uuid
 cardModel.getCards = async (req, res) => {
     // return client.query(`SELECT * FROM cards WHERE uuid = uuid)`)
