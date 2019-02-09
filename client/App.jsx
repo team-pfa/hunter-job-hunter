@@ -27,6 +27,7 @@ class App extends Component {
             username={this.state.user}
             avatar={this.state.avatar}
           />
+
           <Route exact path="/" component={Landing} />
           <Route path="/jobs" component={JobPostings} />
           <Route path="/dashboard" component={Dashboard} />
