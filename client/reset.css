@@ -12,6 +12,8 @@ body {
   position: relative;
   background-color: white;
   width: 100%;
+  border-style: double ;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 /* HTML5 display-role reset for older browsers */
 /* article, aside, details, figcaption, figure,
