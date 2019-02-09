@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../css/Header.css';
-
 
 class Header extends Component {
   constructor(props) {
@@ -10,18 +10,20 @@ class Header extends Component {
   render() {
     return (
         <div>
-            <div class='flex-container'>
-                <div class='header-container' onClick={this.props.showPFAInfo}>
-                    <p id='about'>ABOUT</p>
-                </div>
-                <div class='header-container' onClick={this.props.showActivity}>
-                    <p id='activity'>ACTIVITY</p>
-                </div >
-                <div class='header-container' onClick={this.props.showUserInfo}>
-                    <p id='username'>{this.props.username}</p>
-                </div>
+            <div className='flex-container v-flex'>
                 <div>
-                    <img src={this.props.avatar} id='avatar'></img>
+                    <NavLink to='/' activeClassName='activeNav'><img src={this.props.avatar} id='avatar'></img></NavLink >
+                </div>
+                <div className="h-flex">
+                    <div className='header-container' onClick={this.props.showPFAInfo}>
+                        <NavLink to='/jobs' activeClassName='activeNav' id='about'>Jobs</NavLink >
+                    </div>
+                    <div className='header-container' onClick={this.props.showActivity}>
+                        <NavLink to='/dashboard' activeClassName='activeNav' id='activity'>Dashboard</NavLink >
+                    </div >
+                    <div className='header-container' onClick={this.props.showUserInfo}>
+                        <NavLink to='/resources' activeClassName='activeNav' id='username'>Resources</NavLink >
+                    </div>
                 </div>
             </div>
         </div>

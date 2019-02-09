@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import '../css/LoginForm.css';
 
 class LoginForm extends Component {
     constructor(props) {
        super(props);
-       
+
        this.state = {
           username: '',
           password: '',
@@ -13,15 +14,18 @@ class LoginForm extends Component {
     };
     updateState(event) {
         const input = {
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value
         }
        this.setState(input);
        //console.log(this.state);
     }
 
     submitState() {
+      if ( this.state.username === '' || this.state.password === ''){
+         alert("Must fill username AND password")
+      } else {
        let data = this.state
-       
+
        fetch('/signin', {
           method: "POST",
           headers: {
@@ -34,18 +38,20 @@ class LoginForm extends Component {
                console.log('redirected!');
             }
          });
+      }
     }
-   
+
     render() {
        return (
-          <div>
-              username :
-             <input type = "text" name = "username" value = {this.state.username} 
-                onChange = {this.updateState} /> <br/>
-              password :
-             <input type = "text" name = "password" value = {this.state.password}
-                onChange = {this.updateState} /> <br/>
-            <button onClick={this.submitState}> submit </button>
+          <div className="login-form-container v-flex">
+             <p>User Name:</p>
+             <input type="text" name="username" placeholder="User Name (Required)" value={this.state.username}
+                onChange={this.updateState} />
+             <p>Password:</p>
+             <input type="text" name="password" placeholder="Password (Required)" value={this.state.password}
+                onChange={this.updateState} />
+            <button onClick={this.submitState}>Login</button>
+            <button onClick={this.props.toggleForms}>Sign Up</button>
           </div>
        );
     }
