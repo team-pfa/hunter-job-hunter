@@ -1,9 +1,5 @@
 :root {
-  --blue: #2D3E6E;
-  --lightblue: #5F6C88;
-  --gray: #4A4A4A;
-  --lightgray: #909997;
-  --offwhite: #ECECEC;
+
 }
 
 .v-flex {
@@ -14,4 +10,17 @@
 .h-flex {
   display: flex;
   flex-direction: row;
+}
+
+.main-container {
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container > * {
+  padding: 20px 0px;
+}
+
+button {
+  margin: 20px;
 }
