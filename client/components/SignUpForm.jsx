@@ -65,8 +65,10 @@ class SignUpForm extends Component {
           <input type="text" name="f_name" placeholder="First Name" value={this.state.f_name} onChange={this.handleChange} />
           <p>Last Name:</p>
           <input type="text" name="l_name" placeholder="Last Name" value={this.state.l_name} onChange={this.handleChange} />
+          <button onClick={this.handleSubmit}>Sign Up</button>
+          <button onClick={this.props.toggleForms}>Login</button>
         </div>
-        <button onClick={this.handleSubmit}>Submit</button>
+
       </div>
     )
   }
