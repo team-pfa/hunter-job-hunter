@@ -47,7 +47,7 @@ class JobPostings extends Component {
 
       this.state.apiData.forEach((posting, i) => {
         jobCardArr.push(
-          <div key={i}>
+          <div key={i} className="job-posting-block">
             <p>{posting.title}</p>
             <p>{posting.location}</p>
             <p>{posting.created_at}</p>
