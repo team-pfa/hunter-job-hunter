@@ -28,4 +28,3 @@ cardController.getCards = async (req, res, next) => {
 };
 
 module.exports = cardController;
-

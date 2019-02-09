@@ -17,37 +17,37 @@ const cardModel = {};
 client.query(
     `CREATE TABLE IF NOT EXISTS cards
         (   
+ 
             card_id SERIAL PRIMARY KEY,
-            uuid INTEGER NOT NULL,
-            jobTitle VARCHAR(100) NOT NULL, 
-            company VARCHAR(100) NOT NULL, 
-            jobDescription VARCHAR(500), 
-            jobLocation TEXT UNIQUE NOT NULL, 
-            url TEXT, 
-            salaryRange TEXT NOT NULL,
-            note VARCHAR(100),
-            created_date TIMESTAMP NOT NULL,
-            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL  
-        
+            title VARCHAR(100) NOT NULL,
+            company VARCHAR(100) NOT NULL,
+            description VARCHAR(500),
+            location TEXT,
+            link TEXT,
+            salary TEXT,
+            notes VARCHAR(100),
+            created_date TIMESTAMP DEFAULT NOW(),
+            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
         );`
   )
     .then(res => {
-        console.log(res.rows);
+        return res
     })
     .catch(e => console.error(e.stack))
 
-//create a new card that is tied to a unique user 
+//create a new card that is tied to a unique user
 cardModel.createCard = async (req, res) => {
     const { jobTitle, company, jobDescription, jobLocation, url, salaryRange, note } = req.body;
-    let created_date = Date();
     return client.query
     (
         `INSERT INTO cards (
-            jobTitle, company, jobDescription, jobLocation, url, salaryRange, note, created_date) 
+            title, company, description, location, link, salary, notes
+        )
         VALUES (
-            '${jobTitle}', '${company}', '${jobDescription}', '${jobLocation}', '${url}', '${salaryRange}', '${note}', '${created_date}', '${last_updated}')`
+            '${jobTitle}', '${company}', '${jobDescription}', '${jobLocation}', '${url}', '${salaryRange}', '${note}'
+        )`
     )
-      .then((res) => {
+      .then(() => {
         return true;
       })
       .catch((err) => {
@@ -99,7 +99,7 @@ cardModel.deleteAllCards = async (req, res) => {
     //     return false;
     //     });
     };
-    
+
 //retrieve all rows in cards that match given uuid
 cardModel.getCards = async (req, res) => {
     return client.query(`SELECT * FROM cards WHERE uuid = uuid)`)
