@@ -37,7 +37,6 @@ userModel.createUser = async (req, res) => {
   console.log(hash.length);
   return client.query(`INSERT INTO users (f_name, l_name, username, email, password) VALUES ('${f_name}', '${l_name}', '${username}', '${email}', '${hash}')`)
     .then((res) => {
-      console.log(res);
       return true;
     })
     .catch((err) => {
