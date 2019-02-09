@@ -8,24 +8,8 @@ userController.verify = async (req, res, next) => {
   next();
 };
 
-userController.startSession = async (req, res, data) => {
-  const response = await User.create({
-    cookieId: data._id,
-  });
-  return response;
-};
-
-userController.isLoggedIn = async (req, res) => {
-  const { ssid } = req.cookies;
-  if (!ssid) return null;
-  const authorized = await sessionStorage.findOne({
-    cookieId: ssid,
-  });
-  return authorized;
-};
-
 userController.signup = async (req, res, next) => {
-if (!req.body.username || !req.body.password) res.status(404).send('YOU MUST FILL OUT BOTH USERNAME AND PASSWORD');
+  if (!req.body.username || !req.body.password) res.status(404).send('YOU MUST FILL OUT BOTH USERNAME AND PASSWORD');
   const result = await User.createUser(req);
   res.locals.result = result;
   next();
