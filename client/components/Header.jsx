@@ -12,7 +12,7 @@ class Header extends Component {
         <div>
             <div className='flex-container v-flex'>
                 <div>
-                    <NavLink to='/' activeClassName='activeNav'><img src={this.props.avatar} id='avatar'></img></NavLink >
+                    <NavLink to='/'><img src={this.props.avatar} id='avatar'></img></NavLink >
                 </div>
                 <div className="h-flex">
                     <div className='header-container' onClick={this.props.showPFAInfo}>

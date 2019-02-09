@@ -55,7 +55,7 @@ userModel.createUser = async (req, res) => {
   const hash = bcrypt.hashSync(password, salt);
   // CREATE TABLE users if it doesn't exist
   // a unique psql id and date_created value should be returned
-  let created = Date.now();
+  let created = Date();
   return client.query
     (`INSERT INTO users (
         f_name, l_name, username, email, password, created) 
