@@ -29,7 +29,7 @@ userController.signup = async (req, res, next) => {
   if (!req.body.username || !req.body.password) res.errors = true;
   else {
     res.errors = false;
-    const result = await User.createUser(req);
+    const result = await User.create(req);
     res.locals.result = result;
   }
   return next();

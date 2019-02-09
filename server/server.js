@@ -14,14 +14,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.post('/signin', userController.verify, (req, res, next) => {
+//if user is authenticated, fetch his job cards from db
+app.post('/signin', userController.verify, cardModel.getCards, (req, res, next) => {
   if (res.locals.result) res.status(200).redirect('../userpage.html');
   else res.status(404).send('could not find username and/or password');
 });
 
+//user should be presented with a new card page after successful signup
 app.post('/signup', userController.signup, (req, res, next) => {
   if (!res.locals.errors) res.status(200).send('USER SUCCESSFULLY CREATED!');
   else res.status(404).send('SHENANIGANS :(');
 });
+
+app.post()
+
 
 app.listen(3000);
