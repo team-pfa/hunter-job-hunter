@@ -24,9 +24,8 @@ app.get('/', (req, res, next) => {
 // });
 
 //user should be presented with a new card page after successful signup
-app.post('/signin', userController.verify, sessionController.startSession, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('user is legit and session created!');
-
+app.post('/signin', userController.verify, sessionController.startSession, cardController.getCards, (req, res, next) => {
+  if (res.locals.result) res.status(200).send();
   else res.status(404).send('could not find username and/or password');
 });
 
@@ -44,17 +43,22 @@ app.get('*', (req, res) => {
 });
 
 app.get('/getCards', cardController.getCards, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
+  if (res.locals.result) res.status(200).send();
   else res.status(404).send('SHENANIGANS :(');
 });
 
-app.post('/updateCards', cardController.updateCard, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
+app.put('/updateCards', cardController.updateCard, (req, res, next) => {
+  if (res.locals.result) res.status(200).send('CARD SUCCESSFULLY UPDATED!');
   else res.status(404).send('SHENANIGANS :(');
 });
 
 app.post('/deleteCards', cardController.deleteCard, (req, res, next) => {
-  if (res.locals.result) res.status(200).send('USER SUCCESSFULLY CREATED!');
+  if (res.locals.result) res.status(200).send('CARD SUCCESSFULLY DELETED!');
+  else res.status(404).send('SHENANIGANS :(');
+});
+
+app.post('/addCards', cardController.createCard, (req, res, next) => {
+  if (res.locals.result) res.status(200).send('CARD SUCCESSFULLY CREATED!');
   else res.status(404).send('SHENANIGANS :(');
 });
 

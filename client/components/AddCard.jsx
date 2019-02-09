@@ -28,7 +28,7 @@ class AddCard extends Component {
     addCard(Card) {
         let data = this.state
        
-       fetch('postgres://pfa:pfa@localhost/jobs_db', {
+       fetch('/addCards', {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -43,7 +43,7 @@ class AddCard extends Component {
     }
 
     deleteCard(Card) {
-        fetch('postgres://pfa:pfa@localhost/jobs_db', {
+        fetch('/deleteCards', {
             method: 'delete'
           })
           .then(response => response.json());
