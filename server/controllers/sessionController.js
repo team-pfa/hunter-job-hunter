@@ -6,7 +6,7 @@ const sessionController = {};
 sessionController.startSession = (req, res, next) => {
     const jwtPayload = { username : req.body.username };
     console.log('session created!')
-    res.cookie('ssid', jwt.sign(jwtPayload, 'JWT_SECRET_KEY', { expiresIn: 30000 }));
+    res.cookie('ssid', jwt.sign(jwtPayload, 'JWT_SECRET_KEY', { expiresIn: 30000 }), { HttpOnly: true });
     next();
 };
 

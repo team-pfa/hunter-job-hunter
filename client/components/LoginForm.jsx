@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import '../css/LoginForm.css';
 
 class LoginForm extends Component {
@@ -35,7 +36,8 @@ class LoginForm extends Component {
        })
          .then(res => {
             if (res.redirected === true) {
-               console.log('redirected!');
+               this.props.history.push('/secret')
+               window.location.reload(); // temporary fix
             }
          });
       }
@@ -56,4 +58,4 @@ class LoginForm extends Component {
        );
     }
  }
- export default LoginForm;
+ export default withRouter(LoginForm);

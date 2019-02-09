@@ -44,7 +44,7 @@ class AddCard extends Component {
 
     deleteCard(Card) {
         fetch('postgres://pfa:pfa@localhost/jobs_db', {
-            method: 'delete'
+            method: 'DELETE'
           })
           .then(response => response.json());
         }
